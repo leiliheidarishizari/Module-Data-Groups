@@ -2,6 +2,15 @@
 // Start by running the tests for this function
 // If you're in the Sprint-1 directory, you can run `npm test -- fix` to run the tests in the fix directory
 
+/*function calculateMedian(list) {
+  const middleIndex = Math.floor(list.length / 2);
+  const median = list.splice(middleIndex, 1)[0];
+  return median;
+}
+
+module.exports = calculateMedian;*/
+
+//Answer:
 function calculateMedian(list) {
   // Copy and sort the list
   const sortedList = [...list].sort((a, b) => a - b);
