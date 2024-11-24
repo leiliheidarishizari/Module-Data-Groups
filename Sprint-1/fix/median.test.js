@@ -42,8 +42,11 @@ describe("calculateMedian", () => {
   test("doesn't modify the input", () => {
     const list = [1, 2, 3];
     calculateMedian(list);
-
     expect(list).toEqual([1, 2, 3]);
+  });
+
+  test("throws an error for an empty array", () => {
+    expect(() => calculateMedian([])).toThrow("Cannot calculate median of an empty array");
   });
 });
 
