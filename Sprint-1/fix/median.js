@@ -12,19 +12,23 @@ module.exports = calculateMedian;*/
 
 //Answer:
 function calculateMedian(list) {
+  // Handle the empty array case
+  if (list.length === 0) {
+    throw new Error("Cannot calculate median of an empty array");
+  }
+
   // Copy and sort the list
   const sortedList = [...list].sort((a, b) => a - b);
-
   const middleIndex = Math.floor(sortedList.length / 2);
 
-  // If the list has an even length, return the average of the two middle numbers
+  // Check for odd or even length
   if (sortedList.length % 2 === 0) {
     return (sortedList[middleIndex - 1] + sortedList[middleIndex]) / 2;
   } else {
-    // If the list has an odd length, return the middle number
     return sortedList[middleIndex];
   }
 }
 
 module.exports = calculateMedian;
+
 
