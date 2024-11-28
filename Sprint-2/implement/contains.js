@@ -1,5 +1,5 @@
 function contains(obj,key) {
-if (obj.hasOwnPoperty(key)) {
+if (obj.hasOwnProperty(key)) {
 
     return true;
 }else {
