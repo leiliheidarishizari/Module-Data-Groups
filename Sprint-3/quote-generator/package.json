@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodeYourFuture/CYF-Coursework-Template.git"
+    "url": "git+https://github.com/leiliheidarishizari/CYF-Coursework-Template.git"
   },
   "bugs": {
-    "url": "https://github.com/CodeYourFuture/CYF-Coursework-Template/issues"
+    "url": "https://github.com/leiliheidarishizari/CYF-Coursework-Template/issues"
   },
-  "homepage": "https://github.com/CodeYourFuture/CYF-Coursework-Template#readme",
+  "homepage": "https://github.com/leiliheidarishizari/CYF-Coursework-Template#readme",
   "devDependencies": {
     "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.16.5",

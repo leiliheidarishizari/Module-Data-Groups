@@ -2,7 +2,7 @@
   "name": "alarmclock",
   "version": "1.0.0",
   "license": "CC-BY-SA-4.0",
-  "description": "You must update this package",
+  "description": "A simple alarm clock application with customizable settings.",
   "scripts": {
     "test": "jest"
   },
