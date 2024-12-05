@@ -1,4 +1,4 @@
-// Your alarm clock implementation goes here
+// alarm clock implementation 
 
 var audio = new Audio("alarmsound.mp3");
 
@@ -49,7 +49,7 @@ function pauseAlarm() {
   audio.pause();
 }
 
-// Optional: Flash background when time is up
+//  Flash background when time is up
 function flashBackground() {
   const body = document.body;
   let isFlashing = false;
