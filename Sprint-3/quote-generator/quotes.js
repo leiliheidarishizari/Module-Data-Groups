@@ -507,3 +507,5 @@ document.querySelector("#new-quote").addEventListener("click", displayNewQuote);
 
 // Initial call to display a quote when the page loads
 window.onload = displayNewQuote;
+
+
