@@ -2,9 +2,9 @@
 There are some Tests in this file that will help you work out if your code is working.
 */
 
-const path = require("path");
-const { JSDOM } = require("jsdom");
-const { default: userEvent } = require("@testing-library/user-event");
+import path from 'path';
+import { JSDOM } from 'jsdom';
+import userEvent from '@testing-library/user-event';
 
 let page = null;
 
