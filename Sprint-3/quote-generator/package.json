@@ -25,6 +25,5 @@
     "setupFilesAfterEnv": [
       "./jest.setup.js"
     ]
-  },
-"type": "module"
+  }
 }
