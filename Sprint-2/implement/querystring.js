@@ -6,8 +6,8 @@ function parseQueryString(queryString) {
   const keyValuePairs = queryString.split("&");
 
   for (const pair of keyValuePairs) {
-    const [key, value] = pair.split("=");
-    queryParams[key] = value;
+    const [key, value] = pair.split("=" , 2);
+    queryParams[decodeURIComponent(key)] = decodeURIComponent(value); // Use `2` so it only splits at the first "="
   }
 
   return queryParams;
