@@ -1,10 +1,10 @@
 // alarm clock implementation 
-
 var audio = new Audio("alarmsound.mp3");
 
-// Variable to keep track of the countdown timer
+// Variables to keep track of the countdown timer and state
 let countdownInterval;
 let remainingTime = 0;
+let isCountdownRunning = false;
 
 // Function to format time in MM:SS format
 function formatTime(seconds) {
@@ -13,20 +13,37 @@ function formatTime(seconds) {
   return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 }
 
+// Function to reset the previous timer and clear flashing
+function resetTimer() {
+  clearInterval(countdownInterval);
+  stopFlashingBackground();
+  isCountdownRunning = false;
+}
+
 // Function to set the alarm
 function setAlarm() {
   const inputField = document.getElementById("alarmSet");
-  remainingTime = parseInt(inputField.value, 10);
+  const newTime = parseInt(inputField.value, 10);
 
-  if (isNaN(remainingTime) || remainingTime <= 0) {
+  if (isNaN(newTime) || newTime <= 0) {
     alert("Please enter a valid number greater than 0.");
     return;
   }
 
+  if (isCountdownRunning) {
+    const confirmRestart = confirm(
+      "A countdown is already running. Do you want to restart with the new time?"
+    );
+    if (!confirmRestart) return;
+
+    resetTimer(); // Stop the current timer
+  }
+
+  remainingTime = newTime;
+  isCountdownRunning = true;
+
   const timeRemaining = document.getElementById("timeRemaining");
   timeRemaining.innerText = `Time Remaining: ${formatTime(remainingTime)}`;
-
-  clearInterval(countdownInterval);
 
   countdownInterval = setInterval(() => {
     remainingTime--;
@@ -37,7 +54,7 @@ function setAlarm() {
 
     if (remainingTime === 0) {
       playAlarm();
-      clearInterval(countdownInterval);
+      resetTimer();
       flashBackground();
     }
   }, 1000);
@@ -45,11 +62,14 @@ function setAlarm() {
 
 // Function to stop the alarm
 function pauseAlarm() {
-  clearInterval(countdownInterval);
+  if (isCountdownRunning) {
+    resetTimer();
+    alert("Countdown paused.");
+  }
   audio.pause();
 }
 
-//  Flash background when time is up
+// Flash background when time is up
 function flashBackground() {
   const body = document.body;
   let isFlashing = false;
@@ -60,9 +80,22 @@ function flashBackground() {
   }, 500);
 
   setTimeout(() => {
-    clearInterval(flashInterval);
-    body.style.backgroundColor = "";
+    stopFlashingBackground();
   }, 5000);
+
+  // Save flashInterval globally to clear it later
+  window.flashInterval = flashInterval;
+}
+
+// Function to stop flashing background
+function stopFlashingBackground() {
+  clearInterval(window.flashInterval);
+  document.body.style.backgroundColor = "";
+}
+
+// Function to play the alarm sound
+function playAlarm() {
+  audio.play();
 }
 
 // Setup event listeners when the window loads
@@ -76,36 +109,7 @@ function setup() {
   });
 }
 
-function playAlarm() {
-  audio.play();
-}
-
-function pauseAlarm() {
-  audio.pause();
-}
-
-// DO NOT EDIT BELOW HERE
-
-var audio = new Audio("alarmsound.mp3");
-
-function setup() {
-  document.getElementById("set").addEventListener("click", () => {
-    setAlarm();
-  });
-
-  document.getElementById("stop").addEventListener("click", () => {
-    pauseAlarm();
-  });
-}
-
-function playAlarm() {
-  audio.play();
-}
-
-function pauseAlarm() {
-  audio.pause();
-}
-
 window.onload = setup;
+
 
 
